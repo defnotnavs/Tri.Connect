@@ -1,0 +1,21 @@
+<html>
+    <head>
+    <title>Onload</title>
+       
+
+    </head>
+        <body>
+            <h1 id = "demo"></h1>
+            <p> Assign an "onload" event to an iframe element. </p>
+           
+      
+            <iframe onload="myfunction()" src="/default.asp"></iframe>
+        
+    
+    <script>
+    function myfunction() {
+    document.getElementById("demo").innerHTML = "HELLO. WORLD";
+    }
+        </script>
+        </body>
+</html>

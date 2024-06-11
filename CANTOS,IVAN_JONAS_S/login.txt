@@ -1,0 +1,79 @@
+Imports MySql.Data.MySqlClient
+Imports System.Text
+Public Class Form3
+
+    Dim Mconn As New MySqlConnection("Server=localhost;User ID=root; Password=; Database=vilma'srtwproductdatabase")
+    Dim MDT2 As New DataTable
+    Public Function Encrypt(Encryption As String) As String
+        Dim msg As String = String.Empty
+        Dim encode As Byte() = New Byte(Encryption.Length - 1) {}
+        encode = Encoding.UTF8.GetBytes(Encryption)
+        msg = Convert.ToBase64String(encode)
+        Return msg
+    End Function
+    Public Sub users()
+        Dim madapt As New MySqlDataAdapter("Select * from users", Mconn)
+        MDT2.Clear()
+        madapt.Fill(MDT2)
+        userchecker.DataSource = MDT2
+
+    End Sub
+    Private Sub userchecker_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles userchecker.CellContentClick
+
+    End Sub
+
+    Private Sub btnreg_Click(sender As Object, e As EventArgs) Handles btnreg.Click
+        Me.Hide()
+        Form1.Show()
+
+    End Sub
+
+    Private Sub btnlogin_Click_1(sender As Object, e As EventArgs) Handles btnlogin.Click
+        Dim myCMD As New MySqlCommand
+        Dim encrypted As String
+        encrypted = Encrypt(txtpass.Text)
+        Dim checkAdapter As New MySqlDataAdapter("select * from users where username = '" & txtuser.Text & "' and password = '" & encrypted & "'", Mconn)
+        MDT2.Clear()
+        checkAdapter.Fill(MDT2)
+        userchecker.DataSource = MDT2
+      
+       
+        If MDT2.Rows.Count = 1 Then
+            If txtuser.Text = "admin" And encrypted = "YWRtaW5wYXNzMTIz" Then
+                Me.Hide()
+                Form4.Show()
+                Exit Sub
+            End If
+            Me.Hide()
+            database.Show()
+
+        Else
+            MsgBox("Incorrect Login", MsgBoxStyle.Critical)
+            txtuser.Clear()
+            txtpass.Clear()
+        End If
+
+        If Mconn.State = ConnectionState.Closed Then
+            Mconn.Open()
+        End If
+        
+
+    End Sub
+
+    Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        users()
+        userchecker.Hide()
+
+    End Sub
+
+   
+    Private Sub cbshow_CheckedChanged(sender As Object, e As EventArgs) Handles cbshow.CheckedChanged
+        If cbshow.CheckState = CheckState.Checked Then
+            txtpass.PasswordChar = ControlChars.NullChar
+        Else
+            txtpass.PasswordChar = "*"c
+        End If
+    End Sub
+
+
+End Class

@@ -1,0 +1,60 @@
+
+<html>
+<head>
+        <title>Javascript</title>
+        <script type='text/Javascript' src="functioncalt.js"></script>
+        <link rel="stylesheet" href="calc.css">
+        <button onclick="confirmboss()">Who are you?</button>
+        <button onclick="verify()">Ask Age</button>
+</head>
+        
+        <body>
+        
+         <p>Put number here!</p>
+        <Label>addition</Label>
+        <input id="add1" type="text" name="input">
+        <label>+</label>
+        <input id="add2" type="text" name="input">
+        <label>=</label>
+        <input id="sum" type="text" name="input">
+        <button onclick="let result = add1(document.getElementById('add1').value,
+                                        document.getElementById('add2').value);
+                                        document.getElementById('sum').value = result;
+                                         ">ADD</button>
+        <button onclick="add1()">ADD</button>
+        <br>
+
+        <Label>substraction</Label>
+        <input id="sub1" type="text" name="input">
+        <label>-</label>
+        <input id="sub2" type="text" name="input">
+        <label>=</label>
+        <input id="diff" type="text" name="input">
+        <button onclick="let result2 = sub1(document.getElementById('sub1').value,
+        document.getElementById('sub2').value);
+        document.getElementById('diff').value = result; ">SUB</button>
+        <br>
+
+        <Label>multiplication</Label>
+        <input id="mul1" type="text" name="input">
+        <label>*</label>
+        <input id="mul2" type="text" name="input">
+        <label>=</label>
+        <input id="prod" type="text" name="input">
+        <button onclick="let result3 = mult1(document.getElementById('mul1').value,
+        document.getElementById('mul2').value);
+        document.getElementById('prod').value = result; ">MUL</button>
+        <br>
+          
+        <Label>division</Label>
+        <input id="div1" type="text" name="input">
+        <label>/</label>
+        <input id="div2" type="text" name="input">
+        <label>=</label>
+        <input id="qout" type="text" name="input">
+        <button onclick="let result4 = div1(document.getElementById('div1').value,
+        document.getElementById('div2').value);
+        document.getElementById('qout').value = result; ">DIV</button>
+        <br>
+        </body>
+</html> 
